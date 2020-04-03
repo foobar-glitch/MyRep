@@ -55,7 +55,7 @@ public class game {
 		
 		
 		while(!end) {
-			System.out.printf("choose stack (0<x<%d)",(Integer)this.size);
+			System.out.printf("choose stack (0<x<4)");
 			choose=reader.nextInt();
 			if ((choose <= 4 && choose >= 1)) {
 				end = true;
