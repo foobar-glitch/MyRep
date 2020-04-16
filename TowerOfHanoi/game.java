@@ -24,7 +24,7 @@ public class game {
 		for(int i=2;i<=3;i++) {
 			this.stacks.put(i,aux);
 		}		
-	}
+	}//jjjj
 	
 	private void draw() {
 		Iterator<Entry<Integer, LinkedList<Integer>>> it = this.stacks.entrySet().iterator(); 
