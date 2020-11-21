@@ -6,6 +6,13 @@
  */
 #include "viergewinnt.h"
 
+void clearScreen(){
+	// linux based OS
+	//system("clear");
+	// windows
+	system("CLS");
+}
+
 void VierGewinnt::setArrow() {
 	spielfeld[Y_LENGTH - 1][chosenColumn] = '*';
 }
@@ -173,14 +180,14 @@ bool VierGewinnt::choose_column(char player) {
 	else if (direction == 's') {
 		cout << "\nConfirm with 's' \n" << endl;
 		cin >> confirmation;
-		system("CLS");
+		clearScreen();
 		setArrow();
 		if (confirmation == 's') {
 			return setPlayerAtArrow(player);
 		}
 	}
 	setArrow();
-	system("CLS");
+	clearScreen();
 	// return that no value has been set
 	return false;
 }
