@@ -53,7 +53,7 @@ bool VierGewinnt::won(char player) {
 	/*
 	* Check each coloumn for every row
 	* If at least four 'player' characters
-	* follow without a interruption then
+	* follow without an interruption then
 	* the player has a four coloumn
 	*/
 
@@ -76,7 +76,7 @@ bool VierGewinnt::won(char player) {
 	
 	/*
 	* Check from buttom to top 
-	
+	*
 	*/
 	
 	for (int row = Y_LENGTH - 3; row >= 0; row--) {
@@ -110,10 +110,11 @@ bool VierGewinnt::setPlayerAtArrow(char player) {
 			// didnt set value
 			return false;
 		}
-
+		
+		// can only set if field isnt set already
 		if (spielfeld[maxNotSet][chosenColumn] == ' ') {
 			spielfeld[maxNotSet][chosenColumn] = player;
-			// has set value
+			// return that setting has been successfull
 			return true;
 		}
 		else {
@@ -125,8 +126,8 @@ bool VierGewinnt::setPlayerAtArrow(char player) {
 void VierGewinnt::init() {
 	for (int y = 0; y < Y_LENGTH; y++) {
 		for (int x = 0; x < X_LENGTH; x++) {
-			// both vertically and one horizontally
-			if ((((x == 0 || x == X_LENGTH - 1))) && y!=Y_LENGTH-1) {
+			// define two bars at the sides and one at the bottom
+			if ((((x == 0 || x == X_LENGTH - 1))) && y != Y_LENGTH-1) {
 				spielfeld[y][x] = '|';
 			}
 			else if (y == Y_LENGTH - 2) {
@@ -153,12 +154,14 @@ bool VierGewinnt::choose_column(char player) {
 	char direction, confirmation;
 	cin >> direction;
 	deleteArrow();
+	// move to the right with 'd'
 	if (direction == 'd') {
 		chosenColumn++;
 		if (chosenColumn == X_LENGTH-1) {
 			chosenColumn = 1;
 		}
 	} 
+	// move to the left with 's'
 	else if (direction == 'a') {
 		// (1-X_GAMELENGTH)
 		chosenColumn--;
@@ -166,6 +169,7 @@ bool VierGewinnt::choose_column(char player) {
 			chosenColumn = X_LENGTH - 2;
 		}
 	}
+	// set with s
 	else if (direction == 's') {
 		cout << "\nConfirm with 's' \n" << endl;
 		cin >> confirmation;
@@ -177,6 +181,7 @@ bool VierGewinnt::choose_column(char player) {
 	}
 	setArrow();
 	system("CLS");
+	// return that no value has been set
 	return false;
 }
 
@@ -204,7 +209,7 @@ VierGewinnt::VierGewinnt() {
 				return;
 			}
 		}
-		// add 1 mod 2
+		// add 1 mod 2 => invert player
 		i ^= 1;
 	}
 }
