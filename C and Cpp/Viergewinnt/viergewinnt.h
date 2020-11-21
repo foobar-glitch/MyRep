@@ -34,8 +34,9 @@ private:
 	void deleteArrow();
 	bool choose_column(char);
 	bool setPlayerAtArrow(char);
-
-	bool gewonnen(char);
+	
+	bool undecided();
+	bool won(char);
 public:
 	VierGewinnt();
 };
