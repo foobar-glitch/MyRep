@@ -25,7 +25,7 @@ bool VierGewinnt::undecided() {
 }
 
 bool VierGewinnt::won(char player) {
-	int counterRow, counterColumn, counterDiagonal;
+	int counterRow, counterColumn;
 
 	/*
 	* Check all rows for a choosen coloumn
