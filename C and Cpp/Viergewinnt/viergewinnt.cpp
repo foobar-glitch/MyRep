@@ -27,6 +27,13 @@ bool VierGewinnt::undecided() {
 bool VierGewinnt::won(char player) {
 	int counterRow, counterColumn, counterDiagonal;
 
+	/*
+	* Check all rows for a choosen coloumn
+	* If at least 4 elements of the characters 
+	* of 'player' follow after each other
+	* player has a four row
+	*/
+	
 	for (int y = 0; y < Y_LENGTH; y++) {
 		counterRow = 0;
 		for (int x = 0; x < X_LENGTH; x++) {
@@ -42,6 +49,13 @@ bool VierGewinnt::won(char player) {
 			}			
 		}
 	}
+	
+	/*
+	* Check each coloumn for every row
+	* If at least four 'player' characters
+	* follow without a interruption then
+	* the player has a four coloumn
+	*/
 
 	for (int x = 0; x < X_LENGTH; x++) {
 		counterColumn = 0;
@@ -59,30 +73,31 @@ bool VierGewinnt::won(char player) {
 
 		}
 	}
-
 	
-	for (int column = Y_LENGTH - 3; column > 1; column--) {
+	/*
+	* Check from buttom to top 
+	
+	*/
+	
+	for (int row = Y_LENGTH - 3; row >= 0; row--) {
 		// look if there is a diagonal left to right winner
-		for (int row = 0; row < Y_LENGTH; row++) {
-			if (row + 3 < Y_LENGTH) {
-				if (spielfeld[column][row] == player && spielfeld[column - 1][row + 1] == player && spielfeld[column - 2][row + 2] == player && spielfeld[column - 3][row + 3] == player) {
+		for (int column = 0; column < X_LENGTH; column++) {
+			if (row + 3 < Y_LENGTH && column - 3 >= 0) {
+				if (spielfeld[row][column] == player && spielfeld[row + 1][column - 1] == player && spielfeld[row + 2][column - 2] == player && spielfeld[row + 3][column - 3] == player) {
 					return true;
 				}
 			}
 		}
 		// from right to left
-		for (int row = Y_LENGTH; row > 0; row--) {
-			if (row - 3 > 0) {
-				if (spielfeld[column][row] == player && spielfeld[column - 1][row - 1] == player && spielfeld[column - 2][row - 2] == player && spielfeld[column - 3][row - 3] == player) {
+		for (int column = X_LENGTH; column > 0; column--) {
+			if (row - 3 >= 0 && column >= 0) {
+				if (spielfeld[row][column] == player && spielfeld[row - 1][column - 1] == player && spielfeld[row - 2][column - 2] == player && spielfeld[row - 3][column - 3] == player) {
 					return true;
 				}
 			}
 		}
 
 	}
-
-		
-	
 
 	return false;
 }
@@ -122,8 +137,6 @@ void VierGewinnt::init() {
 			}
 		}
 	}
-	//spielfeld[Y_LENGTH-1][0] = ' ';
-
 	setArrow();
 }
 
